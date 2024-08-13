@@ -1,0 +1,18 @@
+{
+    "cow", "milk", "bovine", "cattle", "heifer", "dairy", "lactose", "udder", 
+    "cream", "butter", "cheese", "whey", "yogurt", "pasteurization", "milkmaid", 
+    "dairyfarm", "holstein", "milking", "parlor", "ruminant", "grassfed", 
+    "dairyindustry", "lactation", "calf", "cowbell", "milkfat", "colostrum", 
+    "veal", "dairyherd", "bulktank", "milkingmachine", "mastitis", "cheesecloth", 
+    "curds", "ghee", "skimmilk", "fullcreammilk", "buttermilk", "casein", 
+    "lactase", "rawmilk", "milkchurn", "milkman", "milkpowder", "milkshake", 
+    "moo", "teat", "barn", "grazing", "hay", "pasture", "silage", 
+    "milkprotein", "dairycow", "organicmilk", "homogenization", "lactationperiod", 
+    "calving", "milkingshed", "artificialinsemination", "dairyprocessing", 
+    "dairyproducts", "dairyequipment", "milkyield", "clottedcream", 
+    "cottagecheese", "sourcream", "evaporatedmilk", "condensedmilk", 
+    "dairybreed", "milkreplacer", "feedlot", "milkjug", "milkingstool", 
+    "milktesting", "dairycooperative", "cheesemaking", "culturedmilk", 
+    "milktanker", "dairymarketing", "dairytechnology", "cud", "hoof", 
+    "mastitisprevention", "creamseparator", "dairysubstitute", "milkallergy"
+};
