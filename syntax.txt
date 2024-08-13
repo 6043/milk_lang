@@ -1,0 +1,14 @@
+<term> ::= <identifier> | <int_literal> | 'input' | <bool> | <real_literal>
+<bool> ::= 'true' | 'false'
+<expr> ::= <term> | <term> <arithmetic_op> <term>
+<arithmetic_op> ::= '+' | '-' | '*' | '/' | '**' | '%' | '>>'
+<comparison> ::= <term> <comparison_op> <term>
+<comparison_op> ::= '<' | '>' | '=='
+<type> ::= 'int' | 'double' | 'bool'?
+<declaration> ::= <type> ['!'] <identifier> [= <expr>]
+<assignment> ::= <identifier> = <expr>
+<if_then> ::= 'if' <comparison> 'then' '{' [<statement>]* '}'
+<while_loop> ::= 'while' <comparison> 'do' '{' [<statement>]* '}'
+<statement> ::= <assignment> | 'goto' <label> | 'print' ('moo') <term> | <label> | <while_loop> | <if_then> | 'break'
+<label> ::= ':' <str_literal>
+<program> ::= <statement> [<statement>]*
