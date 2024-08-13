@@ -1,0 +1,25 @@
+int! cow = input
+int! udder = 2
+
+while udder < cow do {
+    int! cheese = 2
+    int! cream = cheese ** 2
+    while ! cream > udder do {
+        cheese = cheese + 1
+        cream = cheese ** 2
+    }
+    int! yogurt = 2
+    int! calf = true
+    while yogurt < cheese do {
+        int! cottagecheese = udder % yogurt
+        if cottagecheese == 0 then {
+            calf = false
+            break
+        }
+        yogurt = yogurt + 1
+    }
+    if calf == true then {
+        moo udder
+    }
+    udder = udder + 1
+}

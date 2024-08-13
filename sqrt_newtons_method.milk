@@ -1,0 +1,22 @@
+int! cow = input
+
+while cow != 0 do {
+
+    real! cheese = 1.0
+    real! cream
+
+    int! udder = 0
+    real! yogurt
+
+    while udder < 20 do {
+        yogurt = cow / cheese
+        cream = cheese + yogurt
+        cream = cream / 2
+        cheese = cream
+        udder = udder + 1
+    }
+
+    moo cheese
+
+    cow = input
+}

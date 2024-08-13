@@ -2,6 +2,35 @@
 #include <iostream>
 using namespace std;
 
+vector<string> allowed_vars = {
+    "cow", "milk", "bovine", "cattle", "heifer", "dairy", "lactose", "udder",
+    "cream", "butter", "cheese", "whey", "yogurt", "pasteurization", "milkmaid",
+    "dairyfarm", "holstein", "milking", "parlor", "ruminant", "grassfed",
+    "dairyindustry", "lactation", "calf", "cowbell", "milkfat", "colostrum",
+    "veal", "dairyherd", "bulktank", "milkingmachine", "mastitis", "cheesecloth",
+    "curds", "ghee", "skimmilk", "fullcreammilk", "buttermilk", "casein",
+    "lactase", "rawmilk", "milkchurn", "milkman", "milkpowder", "milkshake",
+    "moo", "teat", "barn", "grazing", "hay", "pasture", "silage",
+    "milkprotein", "dairycow", "organicmilk", "homogenization", "lactationperiod",
+    "calving", "milkingshed", "artificialinsemination", "dairyprocessing",
+    "dairyproducts", "dairyequipment", "milkyield", "clottedcream",
+    "cottagecheese", "sourcream", "evaporatedmilk", "condensedmilk",
+    "dairybreed", "milkreplacer", "feedlot", "milkjug", "milkingstool",
+    "milktesting", "dairycooperative", "cheesemaking", "culturedmilk",
+    "milktanker", "dairymarketing", "dairytechnology", "cud", "hoof",
+    "mastitisprevention", "creamseparator", "dairysubstitute", "milkallergy"};
+
+template <typename T>
+bool in_vector(vector<T> vec, T value)
+{
+    for (auto v : vec)
+    {
+        if (v == value)
+            return true;
+    }
+    return false;
+}
+
 // constructor
 Parser::Parser(vector<Token> tokens) : tokens(tokens), pos(0) {};
 
@@ -159,6 +188,12 @@ statement_node Parser::parse_assignment()
     if (this->current_token().kind == IDENTIFIER)
     {
         identifier = this->current_token().value;
+        if (!in_vector(allowed_vars, identifier))
+        {
+            cout << "[leather] compilation failed:" << endl
+                 << "    variable name \'" << identifier << "\' is not MILK enough! find a list of acceptable variable names at https://github.com/6043/milk_lang/blob/main/allowed_vars.txt" << endl;
+            exit(0);
+        }
         this->advance();
     }
     else
@@ -472,6 +507,12 @@ statement_node Parser::parse_declaration()
     if (this->current_token().kind == IDENTIFIER)
     {
         decl.identifier = this->current_token().value;
+        if (!in_vector(allowed_vars, decl.identifier))
+        {
+            cout << "[leather] compilation failed:" << endl
+                 << "    variable name \'" << decl.identifier << "\' is not MILK enough! find a list of acceptable variable names at https://github.com/6043/milk_lang/blob/main/allowed_vars.txt" << endl;
+            exit(0);
+        }
         this->advance();
     }
     else
