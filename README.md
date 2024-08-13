@@ -1,4 +1,4 @@
-# The Cow Language
+# The MILK Language
 
 ## Still in development...
 ### Compiles .milk files into AT&T syntax x86-64 Assembly code which can be executed on Linux machines.
