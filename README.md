@@ -3,6 +3,8 @@
 ### The programming language where only milk and cow-related variables are allowed... (.milk)
 ### Compiles code into x86-64 AT&T syntax Assembly language, which then can be assembled, linked, and executed on Linux computers.
 
+# Installation/Setup can be found [here](https://github.com/6043/milk_lang/blob/main/installation.md).
+
 # Example: 
 ```
 sqrt_newtons_method.milk
