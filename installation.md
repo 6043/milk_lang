@@ -33,7 +33,7 @@ gcc --version
 # Step 4
 ### Installing Leather (the compiler)
 
-Download it [here](). That's it.
+Download it [here](https://github.com/6043/milk_lang/releases/download/v1/leather). That's it.
 
 # Step 3
 ### Writing a program
