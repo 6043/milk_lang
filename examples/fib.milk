@@ -1,5 +1,5 @@
 int! cheese = input
-int... cow[10]
+int... cow[cheese]
 
 cow[0] = 1
 cow[1] = 1
