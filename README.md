@@ -6,136 +6,147 @@
 # Installation/Setup can be found [here](https://github.com/6043/milk_lang/blob/main/installation.md).
 # A Demo Video can be found [here](https://youtu.be/Eu3_kIzMgHc).
 
-# Example: 
+# Example - more can be found [here](https://github.com/6043/milk_lang/tree/main/examples)
 ```
-sqrt_newtons_method.milk
+rps.milk: Play Rock, Paper, Sciccors against the computer!
 ```
-Uses Newton's Method to continuously calculate the square root of a number to 10 decimal points until the user enters 0, based on this equation:
 
-```math
-$$x_{n+1} = \frac{1}{2}\left(x _{n} + \frac{a}{x_{n}} \right)$$
-```
 <br/>
 
 ```c
-int! cow = input
+print "Hello. Welcome to Rock, Paper, Scissors!"
 
-while cow != 0 do {
+int! cheese
+int! cream
 
-    real! cheese = 1.0
-    real! cream
+while cheese != 4 do {
+    print " - 1 for Rock"
+    print " - 2 for Paper"
+    print " - 3 for Scissors"
+    print " - 4 to exit"
+    
+    cheese = input
 
-    int! udder = 0
-    real! yogurt
-
-    while udder < 20 do {
-        yogurt = cow / cheese
-        cream = cheese + yogurt
-        cream = cream / 2
-        cheese = cream
-        udder = udder + 1
+    if cheese == 4 then {
+        break
     }
 
-    moo cheese
+    cream = random % 3
+    cream = cream + 1
+    
+    if cream == 1 then {
+        print "The computer chooses Rock"
+    }
+    if cream == 2 then {
+        print "The computer chooses Paper"
+    }
+    if cream == 3 then {
+        print "The computer chooses Scissors"
+    }
 
-    cow = input
+    if cheese == 1 then {
+        if cream == 1 then {
+            print "You tie."
+        }
+        if cream == 2 then {
+            print "You lose!"
+        }
+        if cream == 3 then {
+            print "You win!"
+        }
+    }
+
+    if cheese == 2 then {
+        if cream == 1 then {
+            print "You win!"
+        }
+        if cream == 2 then {
+            print "You tie."
+        }
+        if cream == 3 then {
+            print "You lose!"
+        }
+    }
+
+    if cheese == 3 then {
+        if cream == 1 then {
+            print "You lose!"
+        }
+        if cream == 2 then {
+            print "You win!"
+        }
+        if cream == 3 then {
+            print "You tie."
+        }
+    }
 }
 ```
 ```
-$ ./leather sqrt_newtons_method.milk
+$ ./leather rps.milk
 [leather] successfully compiled:
-    sqrt_newtons_method.milk -> sqrt_newtons_method.s
+    rps.milk -> rps.s
 ```
 
 ```assembly
+.section .data
+str0:
+   .string "Hello. Welcome to Rock, Paper, Scissors!"
+str1:
+   .string " - 1 for Rock"
+str2:
+   .string " - 2 for Paper"
+str3:
+   .string " - 3 for Scissors"
+str4:
+   .string " - 4 to exit"
+str5:
+   .string "The computer chooses Rock"
+str6:
+   .string "The computer chooses Paper"
+str7:
+   .string "The computer chooses Scissors"
+str8:
+   .string "You tie."
+str9:
+   .string "You lose!"
+str10:
+   .string "You win!"
 .section .text
 .globl _start
 _start:
    mov %rsp, %rbp
-   sub $40, %rsp
-   sub $64, %rsp
-   mov %rbp, %rsi
-   addq $40, %rsi
+   sub $16, %rsp
+   sub $128, %rsp
+   lea str0(%rip), %rax
+   mov %rax, %rdi
+   call print_str
    movq $0, %rax
-   movq $0, %rdi
-   movq $64, %rdx
-   syscall
-   mov %rax, %rcx
-   subq $1, %rcx
-   mov %rsi, %r9
-   addq %rcx, %r9
-   subq $1, %r9
-   movq $1, %rbx
-   xor %r8, %r8
-   call ascii_to_int
    movq %rax, -8(%rbp)
-.STARTWHILE0:
+   movq $0, %rax
+   movq %rax, -16(%rbp)
+.STARTLOOP0:
    movq -8(%rbp), %rax
    mov %rax, %rcx
-   movq $0, %rax
+   movq $4, %rax
    cmpq %rcx, %rax
    setne %al
    movzbq %al, %rax
    test %rax, %rax
-   jz .ENDWHILE0
-   movabs $0x3FF0000000000000, %rax
-   movq %rax, %xmm0
-   movsd %xmm0, -16(%rbp)
-   movabs $0x0, %rax
-   movq %rax, %xmm0
-   movsd %xmm0, -24(%rbp)
-   movq $0, %rax
-   movq %rax, -32(%rbp)
-   movabs $0x0, %rax
-   movq %rax, %xmm0
-   movsd %xmm0, -40(%rbp)
-.STARTWHILE1:
-   movq -32(%rbp), %rax
-   mov %rax, %rcx
-   movq $20, %rax
-   cmpq %rax, %rcx
-   setl %al
-   movzbq %al, %rax
-   test %rax, %rax
-   jz .ENDWHILE1
-   movsd -16(%rbp), %xmm0
-   movsd %xmm0, %xmm1
-   movq -8(%rbp), %rax
-   cvtsi2sd %rax, %xmm0
-   divsd %xmm1, %xmm0
-   movsd %xmm0, -40(%rbp)
-   movsd -16(%rbp), %xmm0
-   movsd %xmm0, %xmm1
-   movsd -40(%rbp), %xmm0
-   addsd %xmm1, %xmm0
-   movsd %xmm0, -24(%rbp)
-   movq $2, %rax
-   cvtsi2sd %rax, %xmm0
-   movsd %xmm0, %xmm1
-   movsd -24(%rbp), %xmm0
-   divsd %xmm1, %xmm0
-   movsd %xmm0, -24(%rbp)
-   movsd -24(%rbp), %xmm0
-   movsd %xmm0, -16(%rbp)
-   movq -32(%rbp), %rax
-   mov %rax, %rcx
-   movq $1, %rax
-   addq %rcx, %rax
-   movq %rax, -32(%rbp)
-   jmp .STARTWHILE1
-.ENDWHILE1:
-   movsd -16(%rbp), %xmm0
-   movq $1, %rsi
-   mov %rbp, %rcx
-   addq $103, %rcx
-   movq $0x0A, (%rcx)
-   dec %rcx
-   call double_to_ascii
-   movq $1, %rax
-   movq $1, %rdi
-   syscall
+   jz .ENDLOOP0
+   lea str1(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+   lea str2(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+   lea str3(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+   lea str4(%rip), %rax
+   mov %rax, %rdi
+   call print_str
    mov %rbp, %rsi
-   addq $40, %rsi
+   addq $16, %rsi
    movq $0, %rax
    movq $0, %rdi
    movq $64, %rdx
@@ -149,14 +160,221 @@ _start:
    xor %r8, %r8
    call ascii_to_int
    movq %rax, -8(%rbp)
-   jmp .STARTWHILE0
-.ENDWHILE0:
+   movq -8(%rbp), %rax
+   mov %rax, %rcx
+   movq $4, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF0
+   jmp .ENDLOOP0
+.ENDIF0:
+   push %rcx
+   movq $3, %rax
+   mov %rax, %rcx
+   mov %rbp, %rdi
+   addq $16, %rdi
+   push %rcx
+   call get_rand
+   pop %rcx
+   xor %rdx, %rdx
+   div %rcx
+   mov %rdx, %rax
+   pop %rcx
+   movq %rax, -16(%rbp)
+   push %rcx
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   addq %rcx, %rax
+   pop %rcx
+   movq %rax, -16(%rbp)
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF1
+   lea str5(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF1:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $2, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF2
+   lea str6(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF2:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $3, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF3
+   lea str7(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF3:
+   movq -8(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF4
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF5
+   lea str8(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF5:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $2, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF6
+   lea str9(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF6:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $3, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF7
+   lea str10(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF7:
+.ENDIF4:
+   movq -8(%rbp), %rax
+   mov %rax, %rcx
+   movq $2, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF8
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF9
+   lea str10(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF9:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $2, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF10
+   lea str8(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF10:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $3, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF11
+   lea str9(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF11:
+.ENDIF8:
+   movq -8(%rbp), %rax
+   mov %rax, %rcx
+   movq $3, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF12
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $1, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF13
+   lea str9(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF13:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $2, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF14
+   lea str10(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF14:
+   movq -16(%rbp), %rax
+   mov %rax, %rcx
+   movq $3, %rax
+   cmpq %rcx, %rax
+   sete %al
+   movzbq %al, %rax
+   test %rax, %rax
+   jz .ENDIF15
+   lea str8(%rip), %rax
+   mov %rax, %rdi
+   call print_str
+.ENDIF15:
+.ENDIF12:
+   jmp .STARTLOOP0
+.ENDLOOP0:
 .exit:
    movq $60, %rax
    xor %rdi, %rdi
    syscall
 
 int_to_ascii:
+   xor %r10, %r10
+   test %rax, %rax
+   jns .convert_positive
+   movq $1, %r10
+   neg %rax
+.convert_positive:
    movq $10, %rbx
    xor %rdx, %rdx
    div %rbx
@@ -165,7 +383,13 @@ int_to_ascii:
    inc %rsi
    dec %rcx
    test %rax, %rax
-   jnz int_to_ascii
+   jnz .convert_positive
+   test %r10, %r10
+   jz .end_itoa
+   movb $'-', (%rcx)
+   dec %rcx
+   inc %rsi
+.end_itoa:
    inc %rcx
    mov %rsi, %rdx
    mov %rcx, %rsi
@@ -199,8 +423,16 @@ exp:
    ret
 
 double_to_ascii:
-   movsd %xmm0, %xmm1
-   cvttsd2si %xmm1, %r9
+   xor %r12, %r12
+   cvttsd2si %xmm0, %r9
+   test %r9, %r9
+   jns .convert_positive_dta
+   movq $1, %r12
+   movabs $0x8000000000000000, %rax
+   movq %rax, %xmm2
+   xorpd %xmm2, %xmm0
+   cvttsd2si %xmm0, %r9
+.convert_positive_dta:
    movq $10000000000, %rax
    cvtsi2sd %rax, %xmm1
    mulsd %xmm1, %xmm0
@@ -229,6 +461,71 @@ double_to_ascii:
    dec %rcx
    mov %r9, %rax
    call int_to_ascii
+   test %r12, %r12
+   jz .end_dtoa
+   dec %rsi
+   movb $'-', (%rsi)
+   inc %rdx
+.end_dtoa:
+   ret
+
+heapalloc:
+   mov %rdi, %rsi
+   movq $0, %rdi
+   movq $0x3, %rdx
+   movq $0x22, %r10
+   movq $-1, %r8
+   xor %r9, %r9
+   movq $9, %rax
+   syscall
+   ret
+
+strcpy:
+   test %rdx, %rdx
+   jz .end_strcpy
+   movb (%rdi), %al
+   movb %al, (%rsi)
+   dec %rdx
+   inc %rdi
+   inc %rsi
+   jmp strcpy
+.end_strcpy:
+   movb $0, (%rsi)
+   ret
+
+strlen:
+   xor %r9, %r9
+.strlen_loop:
+   movb (%rdi), %al
+   test %al, %al
+   jz .end_strlen
+   inc %r9
+   inc %rdi
+   jmp .strlen_loop
+.end_strlen:
+   mov %r9, %rax
+   ret
+
+get_rand:
+   movq $318, %rax
+   movq $8, %rsi
+   movq $0, %rdx
+   syscall
+   movq (%rdi), %rax
+   ret
+
+print_str:
+   mov %rdi, %rsi
+   call strlen
+   mov %rax, %rdx
+   mov %rsi, %r8
+   addq %rdx, %r8
+   movb $0x0A, (%r8)
+   inc %rdx
+   movq $1, %rax
+   movq $1, %rdi
+   syscall
+   movb $0, (%r8)
    ret
 ```
 
@@ -508,81 +805,38 @@ double_to_ascii:
 ```
 
 ```
-$ gcc -c prime.s -o prime.o
-$ ld prime.o -o prime
-$ ./prime
+$ gcc -c rps.s -o rps.o
+$ ld rps.o -o rps
+$ ./rps
 ```
 
 ```
 stdout:
-100
+Hello. Welcome to Rock, Paper, Scissors!
+ - 1 for Rock
+ - 2 for Paper
+ - 3 for Scissors
+ - 4 to exit
+1
+The computer chooses Scissors
+You win!
+ - 1 for Rock
+ - 2 for Paper
+ - 3 for Scissors
+ - 4 to exit
+1
+The computer chooses Rock
+You tie.
+ - 1 for Rock
+ - 2 for Paper
+ - 3 for Scissors
+ - 4 to exit
 2
-3
-5
-7
-11
-13
-17
-19
-23
-29
-31
-37
-41
-43
-47
-53
-59
-61
-67
-71
-73
-79
-83
-89
-97
+The computer chooses Scissors
+You lose!
+ - 1 for Rock
+ - 2 for Paper
+ - 3 for Scissors
+ - 4 to exit
+4
 ```
-
-### What happens if you try to compile a file which doesn't use cow or milk-related variabls? Just watch...
-
-```
-here is a binary search program to find the sqrt of a number, without cow-related variables:
-```
-
-```c
-int! n = input
-while n != 0 do {
-    int! l = 0
-    int! r = n
-
-    while ! l > r do {
-        int! mid = l + r
-        mid = mid / 2
-        int! squared = mid ** 2
-        if squared == n then {
-            break
-        }
-        if squared > n then {
-            r = mid - 1
-        }
-        if squared < n then {
-            l = mid + 1
-        }
-    }
-
-    if squared > n then {
-        mid = mid - 1
-    }
-
-    moo mid
-    n = input
-}
-```
-
-```
-$ ./leather sqrt.milk
-[leather] compilation failed:
-    variable name 'n' is not MILK enough! find a list of acceptable variable names at https://github.com/6043/milk_lang/blob/main/allowed_vars.txt
-```
-
-# Have fun coding with this somewhat obfuscated language !!! And good luck to other participants
