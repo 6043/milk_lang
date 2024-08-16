@@ -1,0 +1,25 @@
+int! cow = input
+int! cattle = 0
+
+while cattle < cow do {
+    int! cream = 2
+    int! cheese = cream ** 2
+    while cheese < cattle do {
+        cream = cream + 1
+        cheese = cream ** 2
+    }
+    int! yogurt = 2
+    int! whey = true
+    while yogurt < cream do {
+        int! butter = cattle % yogurt
+        if butter == 0 then {
+            whey = false
+            break
+        }
+        yogurt = yogurt + 1
+    }
+    if whey == true then {
+        moo cattle
+    }
+    cattle = cattle + 1
+}

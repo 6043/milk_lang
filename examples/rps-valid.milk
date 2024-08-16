@@ -1,0 +1,66 @@
+print "Hello. Welcome to Rock, Paper, Scissors!"
+
+int! cheese
+int! cream
+
+while cheese != 4 do {
+    print " - 1 for Rock"
+    print " - 2 for Paper"
+    print " - 3 for Scissors"
+    print " - 4 to exit"
+    
+    cheese = input
+
+    if cheese == 4 then {
+        break
+    }
+
+    cream = random % 3
+    cream = cream + 1
+    
+    if cream == 1 then {
+        print "The computer chooses Rock"
+    }
+    if cream == 2 then {
+        print "The computer chooses Paper"
+    }
+    if cream == 3 then {
+        print "The computer chooses Scissors"
+    }
+
+    if cheese == 1 then {
+        if cream == 1 then {
+            print "You tie."
+        }
+        if cream == 2 then {
+            print "You lose!"
+        }
+        if cream == 3 then {
+            print "You win!"
+        }
+    }
+
+    if cheese == 2 then {
+        if cream == 1 then {
+            print "You win!"
+        }
+        if cream == 2 then {
+            print "You tie."
+        }
+        if cream == 3 then {
+            print "You lose!"
+        }
+    }
+
+    if cheese == 3 then {
+        if cream == 1 then {
+            print "You lose!"
+        }
+        if cream == 2 then {
+            print "You win!"
+        }
+        if cream == 3 then {
+            print "You tie."
+        }
+    }
+}
