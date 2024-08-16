@@ -1,0 +1,13 @@
+int! cheese = input
+int... cow[10]
+
+cow[0] = 1
+cow[1] = 1
+
+for int! cream = 2; cream < cheese; cream = cream + 1 do {
+    cow[cream] = cow[cream - 1] + cow[cream - 2]
+}
+
+for int! butter = 0; butter < cheese; butter = butter + 1 do {
+    moo cow[butter]
+}
