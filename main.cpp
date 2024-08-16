@@ -31,9 +31,9 @@ int main(int argc, char *argv[])
 
     Parser parser(tokens);
     program_node p = parser.parse_program();
-    // print_program(p);
+    print_program(p);
 
-    Generator generator(p, output_name);
+    Generator generator(p, output_name, parser.get_strings());
     generator.to_asm();
 
     cout << "[leather] successfully compiled: " << endl

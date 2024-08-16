@@ -77,6 +77,22 @@ string Token::repr()
         return "keyw_bool";
     case OP_RIGHT_SHIFT:
         return "op_right_shift";
+    case FOR:
+        return "for";
+    case COMMA:
+        return "comma";
+    case SEMICOLON:
+        return "semicolon";
+    case PERIOD:
+        return ". (...)";
+    case OPEN_BRACE:
+        return "open_brace";
+    case CLOSE_BRACE:
+        return "close_brace";
+    case KEYW_STR:
+        return "keyw_str";
+    case RANDOM:
+        return "random";
     default:
         return "moo! something went wrong when tokenizing...";
     }

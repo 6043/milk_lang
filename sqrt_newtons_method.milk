@@ -1,22 +1,21 @@
-int! cow = input
+int! num = input
 
-while cow != 0 do {
+real... guess[20]
 
-    real! cheese = 1.0
-    real! cream
+while num != 0 do {
 
-    int! udder = 0
-    real! yogurt
+    guess[0] = 1.0
 
-    while udder < 20 do {
-        yogurt = cow / cheese
-        cream = cheese + yogurt
-        cream = cream / 2
-        cheese = cream
-        udder = udder + 1
+    for int! i = 0; i < 19; i = i + 1 do {
+        real! add_part = num / guess[i]
+        guess[i+1] = guess[i] + add_part
+        guess[i+1] = guess[i+1] / 2
     }
 
-    moo cheese
+    for int! j = 0; j < 20; j = j + 1 do
+    {
+        moo guess[j]
+    }
 
-    cow = input
+    num = input
 }

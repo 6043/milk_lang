@@ -1,25 +1,25 @@
-int! cow = input
-int! udder = 2
+n = input
+i = 0
 
-while udder < cow do {
-    int! cheese = 2
-    int! cream = cheese ** 2
-    while ! cream > udder do {
-        cheese = cheese + 1
-        cream = cheese ** 2
+while i < n do {
+    sqrt = 2
+    squared = sqrt ** 2
+    while squared < i do {
+        sqrt = sqrt + 1
+        squared = sqrt ** 2
     }
-    int! yogurt = 2
-    int! calf = true
-    while yogurt < cheese do {
-        int! cottagecheese = udder % yogurt
-        if cottagecheese == 0 then {
-            calf = false
+    factor = 2
+    is_prime = true
+    while factor < sqrt do {
+        remainder = i % factor
+        if remainder == 0 then {
+            is_prime = false
             break
         }
-        yogurt = yogurt + 1
+        factor = factor + 1
     }
-    if calf == true then {
-        moo udder
+    if is_prime == true then {
+        moo i
     }
-    udder = udder + 1
+    i = i + 1
 }

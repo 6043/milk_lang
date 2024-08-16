@@ -11,6 +11,7 @@ enum token_type
     INT_LITERAL,
     REAL_LITERAL,
     INPUT,
+    RANDOM,
     PRINT,
     GOTO,
     IF,
@@ -40,7 +41,14 @@ enum token_type
     KEYW_INT,
     KEYW_BOOL,
     KEYW_REAL,
+    KEYW_STR,
     OP_RIGHT_SHIFT, // >>
+    FOR,
+    COMMA,
+    SEMICOLON,
+    PERIOD,
+    OPEN_BRACE,
+    CLOSE_BRACE
 };
 
 class Token

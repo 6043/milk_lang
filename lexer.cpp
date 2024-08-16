@@ -112,6 +112,21 @@ bool is_keyword(const string &buf, token_type &kind)
         kind = KEYW_BOOL;
         return true;
     }
+    else if (buf == "str")
+    {
+        kind = KEYW_STR;
+        return true;
+    }
+    else if (buf == "for")
+    {
+        kind = FOR;
+        return true;
+    }
+    else if (buf == "random")
+    {
+        kind = RANDOM;
+        return true;
+    }
     else
     {
         return false;
@@ -152,7 +167,35 @@ Token Lexer::next_token()
     else if (this->current_char == '-')
     {
         this->read();
-        return Token(OP_MINUS, "", this->line_number);
+        string buf = "-";
+        int is_real = 0;
+        // collect int
+        while (isdigit(this->current_char) || this->current_char == '.')
+        {
+            if (this->current_char == '.')
+            {
+                is_real++;
+            }
+            if (is_real > 1)
+            {
+                return Token(REAL_LITERAL, buf, this->line_number);
+            }
+            buf.push_back(this->current_char);
+            this->read();
+        }
+
+        if (is_real)
+        {
+            return Token(REAL_LITERAL, buf, this->line_number);
+        }
+        else if (buf.size() == 1)
+        {
+            return Token(OP_MINUS, "", this->line_number);
+        }
+        else
+        {
+            return Token(INT_LITERAL, buf, this->line_number);
+        }
     }
     else if (this->current_char == '*')
     {
@@ -179,6 +222,21 @@ Token Lexer::next_token()
         this->read();
         return Token(OP_MOD, "", this->line_number);
     }
+    else if (this->current_char == '.')
+    {
+        this->read();
+        return Token(PERIOD, "", this->line_number);
+    }
+    else if (this->current_char == ',')
+    {
+        this->read();
+        return Token(COMMA, "", this->line_number);
+    }
+    else if (this->current_char == ';')
+    {
+        this->read();
+        return Token(SEMICOLON, "", this->line_number);
+    }
     else if (this->current_char == '/')
     {
         this->read();
@@ -188,6 +246,16 @@ Token Lexer::next_token()
     {
         this->read();
         return Token(OPEN_BRACKET, "", this->line_number);
+    }
+    else if (this->current_char == '[')
+    {
+        this->read();
+        return Token(OPEN_BRACE, "", this->line_number);
+    }
+    else if (this->current_char == ']')
+    {
+        this->read();
+        return Token(CLOSE_BRACE, "", this->line_number);
     }
     else if (this->current_char == '}')
     {
@@ -204,6 +272,19 @@ Token Lexer::next_token()
             return Token(EQUALEQUAL, "", this->line_number);
         }
         return Token(EQUAL, "", this->line_number);
+    }
+    else if (this->current_char == '"')
+    {
+        // string!
+        string buf = "";
+        this->read();
+        while (this->current_char != '"')
+        {
+            buf.push_back(this->current_char);
+            this->read();
+        }
+        this->read();
+        return Token(STR_LITERAL, buf, this->line_number);
     }
     // label !?
     else if (this->current_char == ':')

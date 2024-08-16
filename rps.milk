@@ -1,0 +1,66 @@
+print "Hello. Welcome to Rock, Paper, Scissors!"
+
+int! choice
+int! computer_choice
+
+while choice != 4 do {
+    print " - 1 for Rock"
+    print " - 2 for Paper"
+    print " - 3 for Scissors"
+    print " - 4 to exit"
+    
+    choice = input
+
+    if choice == 4 then {
+        break
+    }
+
+    computer_choice = random % 3
+    computer_choice = computer_choice + 1
+    
+    if computer_choice == 1 then {
+        print "The computer chooses Rock"
+    }
+    if computer_choice == 2 then {
+        print "The computer chooses Paper"
+    }
+    if computer_choice == 3 then {
+        print "The computer chooses Scissors"
+    }
+
+    if choice == 1 then {
+        if computer_choice == 1 then {
+            print "You tie."
+        }
+        if computer_choice == 2 then {
+            print "You lose!"
+        }
+        if computer_choice == 3 then {
+            print "You win!"
+        }
+    }
+
+    if choice == 2 then {
+        if computer_choice == 1 then {
+            print "You win!"
+        }
+        if computer_choice == 2 then {
+            print "You tie."
+        }
+        if computer_choice == 3 then {
+            print "You lose!"
+        }
+    }
+
+    if choice == 3 then {
+        if computer_choice == 1 then {
+            print "You lose!"
+        }
+        if computer_choice == 2 then {
+            print "You win!"
+        }
+        if computer_choice == 3 then {
+            print "You tie."
+        }
+    }
+}
