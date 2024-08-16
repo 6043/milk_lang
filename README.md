@@ -4,7 +4,7 @@
 ### Compiles code into x86-64 AT&T syntax Assembly language, which then can be assembled, linked, and executed on Linux computers.
 
 # Installation/Setup can be found [here](https://github.com/6043/milk_lang/blob/main/installation.md).
-# A Demo Video can be found [here](https://youtu.be/Eu3_kIzMgHc).
+# A Demo Video can be found [here](https://youtu.be/rsrCh2btN3I).
 
 # Example - more can be found [here](https://github.com/6043/milk_lang/blob/main/examples.md) and [here](https://github.com/6043/milk_lang/tree/main/examples)
 ```
