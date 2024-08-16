@@ -6,7 +6,7 @@
 # Installation/Setup can be found [here](https://github.com/6043/milk_lang/blob/main/installation.md).
 # A Demo Video can be found [here](https://youtu.be/Eu3_kIzMgHc).
 
-# Example - more can be found [here](https://github.com/6043/milk_lang/tree/main/examples)
+# Example - more can be found [here](https://github.com/6043/milk_lang/blob/main/examples.md) and [here](https://github.com/6043/milk_lang/tree/main/examples)
 ```
 rps.milk: Play Rock, Paper, Sciccors against the computer!
 ```
