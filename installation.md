@@ -30,6 +30,11 @@ Running this will confirm you have successfully installed it:
 gcc --version
 ```
 
+# Step 4
+### Installing Leather (the compiler)
+
+Download it [here](). That's it.
+
 # Step 3
 ### Writing a program
 
